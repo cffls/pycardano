@@ -446,3 +446,17 @@ def test_plutus_data_long_bytes():
     assert (
         A_tmp.to_cbor_hex() == quote_hex
     ), "Long metadata bytestring is encoded incorrectly."
+
+
+def test_list():
+    @dataclass
+    class Test(PlutusData):
+        a: list[bytes]
+
+    @dataclass
+    class Test2(PlutusData):
+        a: List[bytes]
+
+    val = [b"hello", b"world"]
+    Test(a=val)
+    Test2(a=val)
